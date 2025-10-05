@@ -63,7 +63,6 @@ def generate_successors(node, heuristic):
                     mi, mj = i + mid_offsets[d][0], j + mid_offsets[d][1]
 
                     if 0 <= ni < 7 and 0 <= nj < 7:
-                        # Only valid if middle is 1 and target is 0
                         if node.board[mi][mj] == 1 and node.board[ni][nj] == 0:
                             new_board = [row[:] for row in node.board]
                             new_board[i][j] = 0

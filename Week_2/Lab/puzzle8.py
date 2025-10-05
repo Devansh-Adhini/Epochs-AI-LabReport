@@ -3,16 +3,13 @@ import time
 import tracemalloc
 from collections import deque
 
-# ---------------- Goal State ----------------
 GOAL_STATE = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 
-# ---------------- Puzzle Node ----------------
 class PuzzleNode:
     def __init__(self, config, prev=None):
         self.config = config
         self.prev = prev
 
-# ---------------- Generate Neighboring States ----------------
 def generate_neighbors(current_node):
     neighbors = []
     zero_pos = current_node.config.index(0)
@@ -26,7 +23,6 @@ def generate_neighbors(current_node):
             neighbors.append(PuzzleNode(new_state, current_node))
     return neighbors
 
-# ---------------- Generate Initial State at Given Depth ----------------
 def generate_state_at_depth(depth):
     """Generate a puzzle depth moves away from the goal."""
     state = GOAL_STATE[:]
@@ -34,7 +30,6 @@ def generate_state_at_depth(depth):
         state = random.choice([s.config for s in generate_neighbors(PuzzleNode(state))])
     return state
 
-# ---------------- BFS Search ----------------
 def breadth_first_search(start, goal):
     open_queue = deque([PuzzleNode(start)])
     visited_nodes = set()
@@ -61,7 +56,6 @@ def breadth_first_search(start, goal):
 
     return None, explored_count
 
-# ---------------- Main ----------------
 if __name__ == "__main__":
     depth = int(input("Enter the depth for initial state: "))
     initial_state = generate_state_at_depth(depth)

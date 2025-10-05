@@ -49,7 +49,6 @@ def generate_successors(node):
                     mi, mj = i + mid_offsets[d][0], j + mid_offsets[d][1]
 
                     if 0 <= ni < 7 and 0 <= nj < 7:
-                        # The jump is only valid if middle is 1 and target is 0, and not jumping over 2
                         if node.board[mi][mj] == 1 and node.board[ni][nj] == 0:
                             new_board = [row[:] for row in node.board]
                             new_board[i][j] = 0
@@ -73,12 +72,10 @@ def priority_queue_search():
     while frontier:
         current = heapq.heappop(frontier)
 
-        # Check if goal
         if current.board == GOAL:
             print("Search completed")
             return current
 
-        # Convert board to tuple to store in explored_set
         board_tuple = tuple(tuple(row) for row in current.board)
         if board_tuple in explored_set:
             continue
