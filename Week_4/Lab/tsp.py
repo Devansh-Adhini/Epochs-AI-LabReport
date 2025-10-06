@@ -1,6 +1,7 @@
 import random
 import math
 import matplotlib.pyplot as plt
+import os
 
 def read_tsp_file(filename):
     cities, start = [], False
